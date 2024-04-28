@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, TextInput, Pressable, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 
 
-export default function Login() {
+export default function Login( {navigation}) {
     return (
         <View style={styles.container}>
 
@@ -11,12 +11,12 @@ export default function Login() {
             <View style={styles.wraperInput}>
                 <TextInput style={styles.input} placeholder='RA' />
                 <TextInput style={styles.input} placeholder='Senha' />
-                <Text style={{textAlign:'right', color:'blue'}} onPress={() => Alert.alert('ir para tela de recuperar senha')} >Primeiro acesso ?</Text>
+                <Text style={{textAlign:'right', color:'blue'}} onPress={() => navigation.navigate ('Cadastro')} >Primeiro acesso ?</Text>
             </View>
             
-            <Pressable style={styles.botaoLogin} onPress={() => Alert.alert('logado')}>
+            <TouchableOpacity style={styles.botaoLogin} onPress={() => Alert.alert('logado')} activeOpacity={0.7}>
                 <Text style={{ color: 'white', fontSize: 20, fontWeight:'700' }} >Login</Text>
-            </Pressable>
+            </TouchableOpacity>
             <Text style={{textAlign:'right', color:'blue'}} onPress={() => Alert.alert('ir para tela de recuperar senha')} >Esqueci a senha</Text>
         </View>
     )

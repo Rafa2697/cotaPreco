@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Pressable, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 
 
 export default function Cadastro(){
@@ -15,9 +15,9 @@ export default function Cadastro(){
                 
             </View>
             
-            <Pressable style={styles.botaoLogin} onPress={() => Alert.alert('Cadastro solicitado, aguarde o email de confirmação com login e senha.')}>
+            <TouchableOpacity style={styles.botaoLogin} onPress={() => Alert.alert('Cadastro solicitado, aguarde o email de confirmação com login e senha.')} activeOpacity={0.7}>
                 <Text style={{ color: 'white', fontSize: 20, fontWeight:'700' }} >Solicitar</Text>
-            </Pressable>
+            </TouchableOpacity>
         </View>
     )
 }

@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 
 
@@ -13,12 +13,12 @@ export default function Start({ navigation }) {
                 O IP-FVR (Índice de preços), foi desenvolvido para os alunos do curso de Ciências Contábeis da UNIVR, fazerem cotações mensais.
             </Text>
             <View style={styles.wraperBotao}>
-                <Pressable style={styles.botaoLogin} onPress={() => navigation.navigate('Login')}>
+                <TouchableOpacity style={styles.botaoLogin} onPress={() => navigation.navigate('Login')} activeOpacity={0.7}>
                     <Text style={{ color: 'white', fontSize: 20 }} >Login</Text>
-                </Pressable>
-                <Pressable style={styles.botaoRegister} onPress={() => navigation.navigate('Cadastro')}>
+                </TouchableOpacity >
+                <TouchableOpacity style={styles.botaoRegister} onPress={() => navigation.navigate('Cadastro')} activeOpacity={0.7}>
                     <Text style={{ color: '#1e90ff', fontSize: 20 }}>Cadastro</Text>
-                </Pressable>
+                </TouchableOpacity >
             </View>
         </View>
     )
