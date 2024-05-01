@@ -3,53 +3,53 @@ import React from 'react';
 
 
 
-export default function Home() {
+export default function Home({navigation}) {
     return (
 
             <SafeAreaView style={styles.container}>
             <ScrollView >
                 <View style={{flex: 1, justifyContent:'space-evenly', alignItems:'center', gap: 30}}>
-                <TouchableOpacity style={styles.wraperComponents}>
+                <TouchableOpacity style={styles.wraperComponents} onPress={() => navigation.navigate('Mercado')}>
                     <ImageBackground source={require('../../../assets/images/mercado.jpg')} style={styles.imgBackground}>
                         <Text style={styles.texto}>Mercado</Text>
                     </ImageBackground>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.wraperComponents}>
+                <TouchableOpacity style={styles.wraperComponents} onPress={() => navigation.navigate('Padaria')}>
                     <ImageBackground source={require('../../../assets/images/padaria.jpeg')} style={styles.imgBackground}>
                         <Text style={styles.texto}>Padaria</Text>
                     </ImageBackground>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.wraperComponents}>
+                <TouchableOpacity style={styles.wraperComponents} onPress={() => navigation.navigate('Acougue')}>
                     <ImageBackground source={require('../../../assets/images/acogue.jpeg')} style={styles.imgBackground}>
                         <Text style={styles.texto}>Açougue</Text>
                     </ImageBackground>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.wraperComponents}>
+                <TouchableOpacity style={styles.wraperComponents} onPress={() => navigation.navigate('Feira')}>
                     <ImageBackground source={require('../../../assets/images/feira.jpeg')} style={styles.imgBackground}>
                         <Text style={styles.texto}>Feira</Text>
                     </ImageBackground>
                 </TouchableOpacity>
                 
-                <TouchableOpacity style={styles.wraperComponents}>
+                <TouchableOpacity style={styles.wraperComponents} onPress={() => navigation.navigate('Gas')}>
                     <ImageBackground source={require('../../../assets/images/gas.jpeg')} style={styles.imgBackground}>
                         <Text style={styles.texto}>Gás de cozinha</Text>
                     </ImageBackground>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.wraperComponents}>
+                <TouchableOpacity style={styles.wraperComponents} onPress={() => navigation.navigate('Combustivel')}>
                     <ImageBackground source={require('../../../assets/images/combustivel.jpeg')} style={styles.imgBackground}>
                         <Text style={styles.texto}>Combustivel</Text>
                     </ImageBackground>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.wraperComponents}>
+                <TouchableOpacity style={styles.wraperComponents} onPress={() => navigation.navigate('Escola')}>
                     <ImageBackground source={require('../../../assets/images/escola.jpeg')} style={styles.imgBackground}>
                         <Text style={styles.texto}>Escola</Text>
                     </ImageBackground>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.wraperComponents}>
+                <TouchableOpacity style={styles.wraperComponents} onPress={() => navigation.navigate('Construcao')}>
                     <ImageBackground source={require('../../../assets/images/construcao.jpeg')} style={styles.imgBackground}>
                         <Text style={styles.texto}>Construção</Text>
                     </ImageBackground>
