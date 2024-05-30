@@ -4,7 +4,7 @@
     "slug": "cotaPreco",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -19,12 +19,19 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logoFundoAzul.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.rafael.mattos.cotaPreco"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "output":"server"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c256f6ab-6108-4a0c-a678-2539653dc318"
+      }
     }
   }
 }
