@@ -32,11 +32,12 @@ export default function Mercado() {
   console.log(text)
   return (
     <View style={styles.container}>
-      <Text >Pesquise o mercado</Text>
+      
        <TextInput
         style={styles.input}
         onChangeText={onChangeText}
         value={text}
+        placeholder='Pesquise o mercado'
       />
     <FlatList
         data={dados}
@@ -72,6 +73,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 10,
-    backgroundColor: "#f0f8ff"
+    backgroundColor: "#f0f8ff",
+    marginTop:12
   },
 })
