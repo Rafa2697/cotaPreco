@@ -20,6 +20,7 @@ export default function Mercado() {
   //   }
   //   fetchData();
   // }, []);
+  
   const [text, onChangeText] = React.useState('');
 
   const Item = ({id}) => (
