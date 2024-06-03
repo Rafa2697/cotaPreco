@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         elevation: 5,
         width: '90%',
-        height: 120,
+        height: 120
     },
     imgBackground: {
         width: "100%",

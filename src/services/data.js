@@ -1,6 +1,7 @@
 
 export const data = [
     {
+      "id": 1,
       "nome": "Maçã Fuji",
       "valor": 5.99,
       "local": {
@@ -10,6 +11,7 @@ export const data = [
       "data": "2024-05-27"
     },
     {
+      "id": 2,
       "nome": "Leite Integral",
       "valor": 4.50,
       "local": {
@@ -19,6 +21,7 @@ export const data = [
       "data": "2024-05-27"
     },
     {
+      "id": 3,
       "nome": "Carne Moída",
       "valor": 19.99,
       "local": {
@@ -28,6 +31,7 @@ export const data = [
       "data": "2024-05-27"
     },
     {
+      "id": 4,
       "nome": "Alface",
       "valor": 2.50,
       "local": {
@@ -37,6 +41,7 @@ export const data = [
       "data": "2024-05-27"
     },
     {
+      "id": 5,
       "nome": "Arroz Branco",
       "valor": 5.30,
       "local": {

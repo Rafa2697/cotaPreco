@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from '@expo/vector-icons';
-import Home from '../screens/Home';
 
 
 const Tab = createBottomTabNavigator();
-import StackRoutes from './stack.routes';
+import StackRoutesA from './stack.routesAluno';
+import StackRoutesC from './stack.routesCoordenador';
 import StackRoutes2  from "./stack.routes2";
 
 export default function TabRoutes() {
@@ -19,11 +19,19 @@ export default function TabRoutes() {
             />
 
             <Tab.Screen
-                name='Inicio'
-                component={StackRoutes} //rota para a tela aluno, onde o aluno vai fazer o login ou cadastro para gerenciar.
+                name='Tela aluno'
+                component={StackRoutesA} //rota para a tela aluno, onde o aluno vai fazer o login ou cadastro para gerenciar.
                 options={{
                     tabBarIcon: ({ color, size }) => <Feather name="user" color={color} size={size} />,
                     tabBarLabel: 'Aluno'
+                }}
+            />
+            <Tab.Screen
+                name='Tela coordenador'
+                component={StackRoutesC} //rota para a tela Coordenaor, onde o coordenador faz o login
+                options={{
+                    tabBarIcon: ({ color, size }) => <Feather name="user" color={color} size={size} />,
+                    tabBarLabel: 'Coordenador'
                 }}
             />
         </Tab.Navigator>

@@ -1,39 +1,38 @@
-import { StyleSheet, Text, View, FlatList} from 'react-native'
+import { StyleSheet, Text, View, FlatList } from 'react-native'
 import React, { useState, useEffect } from 'react';
-import Api from "../../../services/api";
+import api from "../../../services/api";
 
 
+console.log(dados[0])
 export default function Mercado() {
-  const [dados, setDados] = useState([]);
+  const [data, setData] = useState([]);
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await Api.get(`/api/taxas/v1`);
-        
-        setDados(response.data);
-        console.log(dados)
-      } catch (error) {
-        console.error('Erro ao buscar dados dos clientes:', error);
-      }
-    }
+    const fetchData = async () => {
 
+      try {
+        const response = await api.get('/clients');
+        setData(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+      }
+      
+    }
     fetchData();
   }, []);
-  
-  const Item = ({nome, valor}) => (
+  const renderItem = ({ item }) => (
     <View style={styles.item}>
-      <Text style={styles.title}>{nome}</Text>
-      <Text style={styles.title}>{valor}</Text>
+      <Text>{item.nome}</Text>
+      <Text>{item.email}</Text>
     </View>
   );
 
+  console.log(text)
   return (
     <View style={styles.container}>
-      {/* <Text>{pessoas.nome}</Text>  */}
       <FlatList
-        data={dados}
-        renderItem={({item}) => <Item nome={item.nome} valor={item.valor} />}
-        keyExtractor={item => item.nome}
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
       />
      
     </View>
@@ -44,16 +43,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    
-  },
-  item: {
-    backgroundColor: '#425ae0',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-    color:'black'
-  },
+    alignItems: 'center'
+  }
 })

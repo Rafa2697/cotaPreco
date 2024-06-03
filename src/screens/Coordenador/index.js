@@ -1,23 +1,23 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 
 
-export default function Login( {navigation}) {
+export default function LoginCoordenador( {navigation}) {
     return (
         <View style={styles.container}>
 
             <Text style={styles.title}>
-                Bem vindo de volta
+                Tela de login do Coordenador
             </Text>
-            <View style={styles.wraperInput}>
-                <TextInput style={styles.input} placeholder='RA' />
+          <View style={styles.wraperInput}>
+                <TextInput style={styles.input} placeholder='Numero de coordenador' />
                 <TextInput style={styles.input} placeholder='Senha' />
-                <Text style={{textAlign:'right', color:'blue'}} onPress={() => navigation.navigate ('Cadastro')} >Primeiro acesso ?</Text>
+                {/* <Text style={{textAlign:'right', color:'blue'}} onPress={() => navigation.navigate ('Cadastro')} >Primeiro acesso ?</Text> */}
             </View>
             
-            <TouchableOpacity style={styles.botaoLogin} onPress={() => navigation.navigate('Aluno')} activeOpacity={0.7}>
+            <TouchableOpacity style={styles.botaoLogin} onPress={() => navigation.navigate('Categorias')} activeOpacity={0.7}>
                 <Text style={{ color: 'white', fontSize: 20, fontWeight:'700' }} >Login</Text>
             </TouchableOpacity>
-            <Text style={{textAlign:'right', color:'blue'}} onPress={() => Alert.alert('ir para tela de recuperar senha')} >Esqueci a senha</Text>
+            <Text style={{textAlign:'right', color:'blue'}} onPress={() => Alert.alert('ir para tela de recuperar senha')} >Esqueci a senha</Text> 
         </View>
     )
 }
@@ -61,12 +61,10 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         width: 260,
         height: 60,
-        backgroundColor: "#1e90ff",
+        backgroundColor: "#091F3F",
         justifyContent: "center",
         alignItems: "center",
         elevation: 5,
-        
-
     },
 
 })
