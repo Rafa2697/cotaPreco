@@ -37,3 +37,8 @@ Inicie o servidor
 
 **Back-end:** Node, axios, Expo
 
+##Ferramentas de Desenvolvimento
+- [VScode](https://code.visualstudio.com/)
+- [Android Studio](https://developer.android.com/studio?hl=pt-br) Emuladores
+- [Expo Go](https://expo.dev/go)
+
