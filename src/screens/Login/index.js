@@ -1,7 +1,10 @@
+import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
-
+import { PasswordInput } from 'react-native-password-input';
 
 export default function Login( {navigation}) {
+    const [ra, setRa] = React.useState(null)
+    const [senha, setSenha] = React.useState(null)
     return (
         <View style={styles.container}>
 
@@ -9,8 +12,10 @@ export default function Login( {navigation}) {
                 Bem vindo de volta
             </Text>
             <View style={styles.wraperInput}>
-                <TextInput style={styles.input} placeholder='RA' />
-                <TextInput style={styles.input} placeholder='Senha' />
+                <TextInput style={styles.input} onChangeText={setRa} value={ra} keyboardType='numeric' placeholder='RA' />
+
+                <PasswordInput style={styles.input} onChangeText={setSenha} value={senha} placeholder='Senha' />
+
                 <Text style={{textAlign:'right', color:'blue'}} onPress={() => navigation.navigate ('Cadastro')} >Primeiro acesso ?</Text>
             </View>
             

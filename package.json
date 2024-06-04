@@ -14,16 +14,20 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
     "expo": "^49.0.23",
     "expo-application": "~5.8.4",
     "expo-status-bar": "~1.11.1",
+    "expo-updates": "~0.18.19",
+    "express": "^4.19.2",
+    "mongodb": "^6.7.0",
     "react": "18.2.0",
     "react-native": "0.73.6",
     "react-native-gesture-handler": "~2.14.0",
+    "react-native-password-input": "^1.0.0",
     "react-native-reanimated": "~3.6.2",
     "react-native-safe-area-context": "4.8.2",
-    "react-native-screens": "~3.29.0",
-    "expo-updates": "~0.18.19"
+    "react-native-screens": "~3.29.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

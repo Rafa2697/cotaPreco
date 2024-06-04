@@ -1,9 +1,10 @@
-// import express from 'express'
+
 const express = require('express')
+const app = express();
 
 // import data from '../../data.json' with {type: "json"}
 const data = require('../../data.json') 
-const app = express();
+
 
 app.use(express.json());
 

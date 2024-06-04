@@ -1,7 +1,13 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
-
+import React from 'react';
 
 export default function Cadastro(){
+    const [ra, setRa] = React.useState(null);
+    const [nome, setNome] = React.useState(null);
+    const [email, setEmail] = React.useState(null);
+    const [confEmail, setConfEmail] = React.useState(null);
+    const [senha, setSenha] = React.useState(null);
+    
     return(
         <View style={styles.container}>
 
@@ -9,9 +15,15 @@ export default function Cadastro(){
                 Solicite seu cadastro para o administrador
             </Text>
             <View style={styles.wraperInput}>
-                <TextInput style={styles.input} placeholder='RA' />
-                <TextInput style={styles.input} placeholder='Nome' />
-                <TextInput style={styles.input} placeholder='E-mail' />
+                <TextInput style={styles.input} onChangeText={setRa} value={ra} keyboardType='numeric' placeholder='RA' />
+
+                <TextInput style={styles.input} onChangeText={setNome} value={nome} placeholder='Nome' />
+
+                <TextInput style={styles.input} onChangeText={setEmail} value={email} keyboardType='email-address' placeholder='E-mail' />
+
+                <TextInput style={styles.input} onChangeText={setConfEmail} value={confEmail} keyboardType='email-address' placeholder='Confirmação do E-mail' />
+
+                <TextInput textContentType='password' onChangeText={setSenha} value={senha} style={styles.input} placeholder='Senha' />
                 
             </View>
             
