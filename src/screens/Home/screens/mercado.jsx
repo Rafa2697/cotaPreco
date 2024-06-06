@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, FlatList, SectionList } from 'react-native'
 import React, { useState, useEffect, useRef } from 'react';
 import api from "../../../services/api"
 
-import {CATEGORIES, PRODUCTS} from "../../../services/utils/products"
+import {CATEGORIES, PRODUCTS} from "../../../services/utils/mercado/products"
 import {Product} from '../../../components/product'
 import {Category} from '../../../components/category'
 
@@ -10,7 +10,7 @@ import {Category} from '../../../components/category'
 export default function Mercado() {
   const [data, setData] = useState([]);
   const [category, setCategory] = useState(CATEGORIES[0])
-  const sectionListRef = useRef<SectionList>(null)
+  const sectionListRef = useRef(null)
 
   function handleCategorySelect(selectedCategory) {
     setCategory(selectedCategory)
@@ -28,25 +28,25 @@ export default function Mercado() {
     }
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
+  // useEffect(() => {
+  //   const fetchData = async () => {
 
-      try {
-        const response = await api.get('/mercados');
-        setData(response.data);
-      } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-      }
+  //     try {
+  //       const response = await api.get('/mercados');
+  //       setData(response.data);
+  //     } catch (error) {
+  //       console.error('Erro ao buscar dados:', error);
+  //     }
       
-    }
-    fetchData();
-  }, []);
-  const renderItem = ({ item }) => (
-    <View style={styles.item} key={item}>
-      <Text>{item.nome}</Text>
-      <Text>{item.email}</Text>
-    </View>
-  );
+  //   }
+  //   fetchData();
+  // }, []);
+  // const renderItem = ({ item }) => (
+  //   <View style={styles.item} key={item}>
+  //     <Text>{item.nome}</Text>
+  //     <Text>{item.email}</Text>
+  //   </View>
+  // );
 
   // console.log(text)
   return (
@@ -60,7 +60,7 @@ export default function Mercado() {
     // </View>
     <View style={styles.container}>
       <FlatList
-        data={CATEGORIES}
+        data={CATEGORIES} //renderizando o componente de categorias
         keyExtractor={(item) => item}
         renderItem={({ item }) => (
           <Category
@@ -75,18 +75,18 @@ export default function Mercado() {
           paddingHorizontal: 32,
         }}
         showsHorizontalScrollIndicator={false}
-        horizontal
+        horizontal //renderizando na horizontal
       />
 
       <SectionList
         ref={sectionListRef}
-        sections={PRODUCTS}
+        sections={PRODUCTS} //recebendo os produtos do componente.
         keyExtractor={(item) => item}
         stickySectionHeadersEnabled={false}
-        renderItem={() => <Product />}
+        renderItem={() => <Product />} //rederizando os itens 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.sectionContainer}
-        renderSectionHeader={({ section: { title } }) => (
+        renderSectionHeader={({ section: { title } }) => ( //texto da sessão do itens de produtos
           <Text style={styles.header}>{title}</Text>
         )}
       />
@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: "#09090A",
+    paddingTop: 20,
   },
   item: {
     backgroundColor: '#f9c2ff',

@@ -1,7 +1,7 @@
-import { View } from "react-native"
+import { View, StyleSheet } from "react-native"
 
 export function Product() {
-    return <View style={styles.container} />
+    return <View style={styles.container} /> //item que será renderizado
   }
 
 
