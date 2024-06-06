@@ -17,7 +17,7 @@ export default function Login({ navigation }) {
                 Bem vindo de volta
             </Text>
             <View style={styles.wraperInput}>
-                <TextInput style={styles.input} onChangeText={setRa} value={ra} keyboardType='numeric' placeholder='RA' />
+                <TextInput style={styles.input} onChangeText={setRa} value={ra} keyboardType='numeric' placeholder='RA'/>
 
                 <View style={styles.containerInPass}>
                     <View style={styles.input}>
@@ -28,7 +28,6 @@ export default function Login({ navigation }) {
                         </Pressable>
 
                     </View>
-
                 </View>
 
 
