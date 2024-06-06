@@ -21,7 +21,7 @@ export default function Login({ navigation }) {
 
                 <View style={styles.containerInPass}>
                     <View style={styles.input}>
-                        <TextInput onChangeText={setSenha} value={senha} secureTextEntry={viewPass} keyboardType='text' placeholder='Senha' />
+                        <TextInput onChangeText={setSenha} value={senha} secureTextEntry={viewPass} placeholder='Senha' />
                         <Pressable onPress={onViewPass}>
                             {viewPass == true && (<Feather name="eye" size={24} color="black" />)}
                             {viewPass == false && (<Feather name="eye-off" size={24} color="black" />)}
