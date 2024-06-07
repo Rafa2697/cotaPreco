@@ -1,92 +1,219 @@
+import { ofertas } from "../../data.js"
 
-// const PRODUCTS = [
-//     {
-//       title: "Ofertas",
-//       data: Array.from({ length: 3 }, (_, index) => String(index)),
-//     },
-//     {
-//       title: "Alimentos",
-//       data: Array.from({ length: 10 }, (_, index) => String(index)),
-//     },
-//     {
-//       title: "Mercearia",
-//       data: Array.from({ length: 10 }, (_, index) => String(index)),
-//     },
-//     {
-//       title: "Sobremesas",
-//       data: Array.from({ length: 7 }, (_, index) => String(index)),
-//     },
-//     {
-//       title: "Bebidas",
-//       data: Array.from({ length: 5 }, (_, index) => String(index)),
-//     },
-//   ]
+
 const PRODUCTS = [
   {
     title: "Ofertas",
-    data: [
-      { nome: "Camiseta", preco: 19.90 },
-      { nome: "Calça Jeans", preco: 49.90 },
-      { nome: "Tênis", preco: 79.90 },
-      (_, index) => String(index)
-    ],
-    
+    data: [{
+      "nome": "Maçã",
+      "valor": 5.50,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    }, {
+      "nome": "salgadinho",
+      "valor": 5.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },]
   },
   {
     title: "Alimentos",
-    data: [
-      { nome: "Leite", preco: 3.50 },
-      { nome: "Ovos", preco: 5.90 },
-      { nome: "Pão", preco: 2.80 },
-      { nome: "Frango", preco: 9.90 },
-      { nome: "Carne Moída", preco: 7.50 },
-      { nome: "Arroz", preco: 4.90 },
-      { nome: "Feijão", preco: 3.80 },
-      { nome: "Macarrão", preco: 2.50 },
-      { nome: "Batata", preco: 3.00 },
-      { nome: "Tomate", preco: 2.20 }
-    ]
+    data: [{
+      "nome": "Arroz",
+      "valor": 30.51,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    }, 
+    {
+      "nome": "bolacha recheada",
+      "valor": 1.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+    {
+      "nome": "Feijão",
+      "valor": 5.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+    {
+      "nome": "Óleo Liza",
+      "valor": 5.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+  ]
+  },
+
+  {
+    title: "Limpeza",
+    data: [{
+      "nome": "Cloco 2L",
+      "valor": 14.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    }, 
+    {
+      "nome": "Detergente Ype",
+      "valor": 1.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+    {
+      "nome": "Sabão em pó OMO",
+      "valor": 17.90,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+  ]
   },
   {
-    title: "Mercearia",
-    data: [
-      { nome: "Shampoo", preco: 8.90 },
-      { nome: "Sabonete", preco: 3.50 },
-      { nome: "Creme Dental", preco: 4.20 },
-      { nome: "Papel Higiênico", preco: 5.80 },
-      { nome: "Limpador Multiuso", preco: 9.50 },
-      { nome: "Detergente", preco: 7.90 },
-      { nome: "Alvejante", preco: 4.50 },
-      { nome: "Desodorante", preco: 6.30 },
-      { nome: "Maquiagem", preco: 22.50 },
-      { nome: "Perfume", preco: 55.00 }
-    ]
-  },
-  {
-    title: "Sobremesas",
-    data: [
-      { nome: "Sorvete", preco: 5.00 },
-      { nome: "Bolo", preco: 18.00 },
-      { nome: "Torta", preco: 25.00 },
-      { nome: "Pudim", preco: 12.00 },
-      { nome: "Mousse", preco: 15.00 },
-      { nome: "Doce", preco: 3.00 },
-      { nome: "Chocolate", preco: 10.00 }
-    ]
+    title: "Higiene pessoal",
+    data: [{
+      "nome": "Sabonete",
+      "valor": 4.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    }, 
+    {
+      "nome": "Shampoo",
+      "valor": 13.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+    {
+      "nome": "condicionador",
+      "valor": 15.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+    {
+      "nome": "Desodorante",
+      "valor": 19.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+    {
+      "nome": "Pasta de dente Colgate",
+      "valor": 4.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+  ]
   },
   {
     title: "Bebidas",
-    data: [
-      { nome: "Água", preco: 2.00 },
-      { nome: "Suco", preco: 3.50 },
-      { nome: "Refrigerante", preco: 4.00 },
-      { nome: "Cerveja", preco: 5.50 },
-      { nome: "Vinho", preco: 25.00 }
-    ]
+    data: [{
+      "nome": "Agua mineral 250ml",
+      "valor": 2.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    }, 
+    {
+      "nome": "Agua mineral 1L",
+      "valor": 5.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+    {
+      "nome": "Coca Cola 350ml",
+      "valor": 4.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+    {
+      "nome": "Coca Cola zero 350ml ",
+      "valor": 4.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+    {
+      "nome": "Coca Cola 1L ",
+      "valor": 13.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+    {
+      "nome": "Coca Cola zero 1L ",
+      "valor": 13.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+    {
+      "nome": "Dolly 1L ",
+      "valor": 7.99,
+      "local": {
+        "nomeEstabelecimento": "Supermercado ABC",
+        "cidade": "Peruíbe"
+      },
+      "data": "2024-05-27"
+    },
+  ]
   }
-];
+]
 
-  
-  const CATEGORIES = PRODUCTS.map((item) => item.title)
-  
-  export { PRODUCTS, CATEGORIES }
+
+
+const CATEGORIES = PRODUCTS.map((item) => item.title)
+
+export { PRODUCTS, CATEGORIES }

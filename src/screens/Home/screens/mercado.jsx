@@ -1,14 +1,13 @@
 import { StyleSheet, Text, View, FlatList, SectionList } from 'react-native'
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState,useRef } from 'react';
 import api from "../../../services/api"
 
 import {CATEGORIES, PRODUCTS} from "../../../services/utils/mercado/products"
 import {Product} from '../../../components/product'
 import {Category} from '../../../components/category'
 
-// console.log(dados[0])
+
 export default function Mercado() {
-  const [data, setData] = useState([]);
   const [category, setCategory] = useState(CATEGORIES[0])
   const sectionListRef = useRef(null)
 
@@ -28,36 +27,8 @@ export default function Mercado() {
     }
   }
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-
-  //     try {
-  //       const response = await api.get('/mercados');
-  //       setData(response.data);
-  //     } catch (error) {
-  //       console.error('Erro ao buscar dados:', error);
-  //     }
-      
-  //   }
-  //   fetchData();
-  // }, []);
-  // const renderItem = ({ item }) => (
-  //   <View style={styles.item} key={item}>
-  //     <Text>{item.nome}</Text>
-  //     <Text>{item.email}</Text>
-  //   </View>
-  // );
-
-  // console.log(text)
+  
   return (
-    // <View style={styles.container}>
-    //   <FlatList
-    //     data={data}
-    //     renderItem={renderItem}
-    //     keyExtractor={(item) => item.id}
-    //   />
-     
-    // </View>
     <View style={styles.container}>
       <FlatList
         data={CATEGORIES} //renderizando o componente de categorias
@@ -78,12 +49,13 @@ export default function Mercado() {
         horizontal //renderizando na horizontal
       />
 
+        
       <SectionList
         ref={sectionListRef}
         sections={PRODUCTS} //recebendo os produtos do componente.
-        keyExtractor={(item) => item}
+        keyExtractor={(item) => String(item.nome)}
         stickySectionHeadersEnabled={false}
-        renderItem={() => <Product />} //rederizando os itens 
+        renderItem={({ item }) => <Product nome={item.nome} valor={item.valor} />}//rederizando os itens 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.sectionContainer}
         renderSectionHeader={({ section: { title } }) => ( //texto da sessão do itens de produtos
@@ -91,6 +63,7 @@ export default function Mercado() {
         )}
       />
     </View>
+    
   )
 }
 
@@ -98,7 +71,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: "#09090A",
+    backgroundColor: "white",
     paddingTop: 20,
   },
   item: {
@@ -107,14 +80,9 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 16,
   },
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: "#09090A",
-  //   paddingTop: 52,
-  // },
   header: {
-    color: "#FFFFFF",
-    fontSize: 22,
+    color: "Black",
+    fontSize: 24,
     fontWeight: "900",
     marginBottom: 18,
     marginTop: 32,

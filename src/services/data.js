@@ -1,5 +1,5 @@
 
-export const data = [
+export const ofertas = [
     {
       "id": 1,
       "nome": "Maçã Fuji",

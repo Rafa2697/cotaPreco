@@ -1,4 +1,4 @@
-import { Text, Pressable, PressableProps, StyleSheet } from "react-native"
+import { Text, Pressable, StyleSheet } from "react-native"
 
 
 
@@ -20,16 +20,16 @@ export function Category({
 const styles = StyleSheet.create({
     container: {
       height: 42,
-      paddingHorizontal: 16,
+      paddingHorizontal: 18,
       borderRadius: 7,
       justifyContent: "center",
     },
     title: {
-      color: "#FFF",
+      color: "#25328A",
       fontSize: 16,
       fontWeight: "bold",
     },
     selected: {
-      backgroundColor: "#505059",
+      backgroundColor: "#E8E8E8",
     },
   })
