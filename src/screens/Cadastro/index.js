@@ -7,6 +7,25 @@ export default function Cadastro(){
     const [email, setEmail] = React.useState(null);
     const [confEmail, setConfEmail] = React.useState(null);
     const [senha, setSenha] = React.useState(null);
+
+    const handleOnSubmit = async (e) => {
+        e.preventDefault();
+        let result = await fetch(
+        'http://localhost:3000/users', {
+            method: "post",
+            body: JSON.stringify({ra, nome, email, senha }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        result = await result.json();
+        console.warn(result);
+        if (result) {
+            alert("Data saved succesfully");
+            setEmail("");
+            setNome("");
+        }
+    }
     
     return(
         <View style={styles.container}>
@@ -27,7 +46,7 @@ export default function Cadastro(){
                 
             </View>
             
-            <TouchableOpacity style={styles.botaoLogin} onPress={() => Alert.alert('Cadastro solicitado, aguarde o email de confirmação com login e senha.')} activeOpacity={0.7}>
+            <TouchableOpacity style={styles.botaoLogin} onPress={handleOnSubmit} activeOpacity={0.7}>
                 <Text style={{ color: 'white', fontSize: 20, fontWeight:'700' }} >Solicitar</Text>
             </TouchableOpacity>
         </View>
