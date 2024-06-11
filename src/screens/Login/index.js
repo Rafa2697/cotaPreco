@@ -6,10 +6,39 @@ export default function Login({ navigation }) {
     const [ra, setRa] = React.useState(null)
     const [senha, setSenha] = React.useState(null)
     const [viewPass, setViewPass] = React.useState(true);
-
     function onViewPass() {
         setViewPass(!viewPass)
     }
+
+    const handleLogin = async () => {
+        const apiUrl = 'http://192.168.0.107:3000/users';
+        const loginData = {
+          ra: ra,
+          senha: senha
+        };
+      
+        try {
+          const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(loginData)
+          });
+      
+          if (response.ok) {
+            const jsonResponse = await response.json();
+            // Aqui você pode salvar o token de autenticação, se necessário, e navegar para a tela do aluno
+            console.log('Login bem-sucedido:', jsonResponse);
+            navigation.navigate('Aluno'); // Navega para a tela do aluno após o login bem-sucedido
+          } else {
+            throw new Error('Credenciais inválidas');
+          }
+        } catch (error) {
+          Alert.alert('Erro de Login', 'Não foi possível realizar o login. Verifique suas credenciais e tente novamente.');
+          console.error('Erro ao tentar login:', error);
+        }
+      };
     return (
         <View style={styles.container}>
 
@@ -36,7 +65,7 @@ export default function Login({ navigation }) {
                 <Text style={{ textAlign: 'right', color: 'blue' }} onPress={() => navigation.navigate('Cadastro')} >Primeiro acesso ?</Text>
             </View>
 
-            <TouchableOpacity style={styles.botaoLogin} onPress={() => navigation.navigate('Aluno')} activeOpacity={0.7}>
+            <TouchableOpacity style={styles.botaoLogin} onPress={handleLogin} activeOpacity={0.7}>
                 <Text style={{ color: 'white', fontSize: 20, fontWeight: '700' }} >Login</Text>
             </TouchableOpacity>
             <Text style={{ textAlign: 'right', color: 'blue' }} onPress={() => Alert.alert('ir para tela de recuperar senha')} >Esqueci a senha</Text>

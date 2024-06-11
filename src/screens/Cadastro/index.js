@@ -1,33 +1,60 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import React from 'react';
 
-export default function Cadastro(){
+
+export default function Cadastro() {
     const [ra, setRa] = React.useState(null);
     const [nome, setNome] = React.useState(null);
     const [email, setEmail] = React.useState(null);
     const [confEmail, setConfEmail] = React.useState(null);
     const [senha, setSenha] = React.useState(null);
 
-    const handleOnSubmit = async (e) => {
-        e.preventDefault();
-        let result = await fetch(
-        'http://localhost:3000/users', {
-            method: "post",
-            body: JSON.stringify({ra, nome, email, senha }),
-            headers: {
-                'Content-Type': 'application/json'
+    const handleOnSubmit = async () => {
+        const apiUrl = 'http://192.168.0.107:3000/users'; // Substitua com o seu endpoint da API, não use localhost, coloque o ip da sua maquina para funcionar em emuladores e devices.
+        const userData = {
+            ra: ra,
+            nome: nome,
+            email: email,
+            senha: senha
+        };
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData)
+            });
+
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                console.log('Dados enviados com sucesso:', jsonResponse);
+                // Resetar os estados
+                setRa('');
+                setNome('');
+                setEmail('');
+                setConfEmail('');
+                setSenha('');
+
+                Alert.alert(
+                    "Cadastro Solicitado",
+                    "Seu cadastro foi solicitado com sucesso!",
+                    [
+                      { text: "OK" }
+                    ],
+                    { cancelable: false }
+                  );
+            } else {
+                throw new Error('Falha ao enviar dados');
             }
-        })
-        result = await result.json();
-        console.warn(result);
-        if (result) {
-            alert("Data saved succesfully");
-            setEmail("");
-            setNome("");
+        } catch (error) {
+            console.error('Erro ao enviar dados:', error);
         }
-    }
-    
-    return(
+    };
+
+
+    return (
         <View style={styles.container}>
 
             <Text style={styles.title}>
@@ -43,11 +70,11 @@ export default function Cadastro(){
                 <TextInput style={styles.input} onChangeText={setConfEmail} value={confEmail} keyboardType='email-address' placeholder='Confirmação do E-mail' />
 
                 <TextInput textContentType='password' onChangeText={setSenha} value={senha} style={styles.input} placeholder='Senha' />
-                
+
             </View>
-            
+
             <TouchableOpacity style={styles.botaoLogin} onPress={handleOnSubmit} activeOpacity={0.7}>
-                <Text style={{ color: 'white', fontSize: 20, fontWeight:'700' }} >Solicitar</Text>
+                <Text style={{ color: 'white', fontSize: 20, fontWeight: '700' }} >Solicitar</Text>
             </TouchableOpacity>
         </View>
     )
@@ -65,14 +92,14 @@ const styles = StyleSheet.create({
     },
     wraperInput: {
         gap: 24,
-        
+
     },
     title: {
         fontSize: 18,
         margin: 10,
         color: "#ccc",
         textAlign: 'justify',
-        
+
     },
     input: {
         width: 357,
@@ -96,7 +123,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         elevation: 5,
-        
+
 
     },
 

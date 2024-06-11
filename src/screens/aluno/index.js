@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 
-export default function Aluno() {
+export default function Aluno({ navigation }) {
     return (
         <View style={styles.container}>
 

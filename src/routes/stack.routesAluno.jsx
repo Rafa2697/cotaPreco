@@ -3,7 +3,7 @@ import Login from '../screens/Login'
 import Start from '../screens/Inicio'
 import Cadastro from '../screens/Cadastro'
 import Aluno from '../screens/aluno'
-import Coordenador from '../screens/Coordenador'
+
 
 
 
