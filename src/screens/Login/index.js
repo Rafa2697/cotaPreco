@@ -6,20 +6,22 @@ export default function Login({ navigation }) {
     const [ra, setRa] = React.useState(null)
     const [senha, setSenha] = React.useState(null)
     const [viewPass, setViewPass] = React.useState(true);
+    //escondendo input da senha
     function onViewPass() {
         setViewPass(!viewPass)
     }
 
     const handleLogin = async () => {
-        const apiUrl = 'http://192.168.0.107:3000/users';
+        const apiUrl = 'http://10.0.8.67:3000/login'; //colocar o ip da maquina para usar o emulador ou aplicação no expo. 
+
         const loginData = {
           ra: ra,
           senha: senha
         };
-      
+      console.log(loginData)
         try {
           const response = await fetch(apiUrl, {
-            method: 'GET',
+            method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
@@ -35,8 +37,9 @@ export default function Login({ navigation }) {
             throw new Error('Credenciais inválidas');
           }
         } catch (error) {
+            
           Alert.alert('Erro de Login', 'Não foi possível realizar o login. Verifique suas credenciais e tente novamente.');
-          console.error('Erro ao tentar login:', error);
+        //   console.error('Erro ao tentar login:', error);
         }
       };
     return (
