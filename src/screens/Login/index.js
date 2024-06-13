@@ -32,7 +32,7 @@ export default function Login({ navigation }) {
             const jsonResponse = await response.json();
             // Aqui você pode salvar o token de autenticação, se necessário, e navegar para a tela do aluno
             console.log('Login bem-sucedido:', jsonResponse);
-            navigation.navigate('Aluno'); // Navega para a tela do aluno após o login bem-sucedido
+            navigation.navigate('menuAluno'); // Navega para a tela do aluno após o login bem-sucedido
           } else {
             throw new Error('Credenciais inválidas');
           }
