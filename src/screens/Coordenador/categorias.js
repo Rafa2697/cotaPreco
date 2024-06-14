@@ -11,16 +11,15 @@ export default function LoginCoordenador({ navigation }) {
             </Text>
 
             <TouchableOpacity style={styles.categoryA} onPress={() => navigation.navigate('CategoriaAluno')} activeOpacity={0.7}>
-            <AntDesign name="adduser" size={32} color="#ccc" />
+            <AntDesign name="adduser" size={42} color="black" />
                 <Text style={styles.title}>Aluno</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.categoryb} onPress={() => navigation.navigate('CategoriaCotacao')} activeOpacity={0.7}>
-            <AntDesign name="checkcircleo" size={32} color="#ccc" />
+            <AntDesign name="checkcircleo" size={42} color="black" />
                 <Text style={styles.title}>Cotações</Text>
             </TouchableOpacity>
             
-
         </View>
     )
 }
@@ -40,29 +39,27 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     title: {
-        fontSize: 28,
+        fontSize: 24,
         margin: 10,
-        color: "#fff",
+        color: "black",
         textAlign: 'center'
     },
     categoryA: {
-        backgroundColor: 'blue',
-        width: '80%',
-        height: '12%',
-        borderRadius: 18,
-        justifyContent: 'center',
-        flexDirection:'row',
-        alignItems:'center',
+        borderRadius: 5,
+        width: 280,
+        height: 120,
+        backgroundColor: "#1e90ff",
+        justifyContent: "center",
+        alignItems: "center",
         elevation: 5,
     },
     categoryb: {
-        backgroundColor: 'green',
-        width: '80%',
-        height: '12%',
-        borderRadius: 18,
-        justifyContent: 'center',
-        flexDirection:'row',
-        alignItems:'center',
+        borderRadius: 5,
+        width: 280,
+        height: 120,
+        backgroundColor: "#1e90ff",
+        justifyContent: "center",
+        alignItems: "center",
         elevation: 5,
     },
 

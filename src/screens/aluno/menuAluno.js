@@ -1,27 +1,27 @@
-import { StyleSheet, Text, View, TouchableOpacity  } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 
-export default function MenuAluno({navigation}){
+export default function MenuAluno({ navigation }) {
 
-    return(
+    return (
 
         <View style={styles.container}>
 
-           <TouchableOpacity  style={styles.viewBox} activeOpacity={0.7} onPress={() => navigation.navigate('Categorias')}>
-           <AntDesign name="solution1" size={62} color="black" />
-           <Text>Cotação de Produtos</Text>
-           </TouchableOpacity >
+            <TouchableOpacity style={styles.viewBox} activeOpacity={0.7} onPress={() => navigation.navigate('Categorias')}>
+                <AntDesign name="solution1" size={62} color="black" />
+                <Text>Cotação de Produtos</Text>
+            </TouchableOpacity >
 
-           <TouchableOpacity style={styles.viewBox} activeOpacity={0.7} onPress={() => navigation.navigate('CadastroMercadoria')}> 
-           <AntDesign name="pluscircle" size={62} color="black" />
-           <Text>Cadastrar Produtos</Text>
-           </TouchableOpacity>
+            <TouchableOpacity style={styles.viewBox} activeOpacity={0.7} onPress={() => navigation.navigate('CadastroMercadoria')}>
+                <AntDesign name="pluscircle" size={62} color="black" />
+                <Text>Cadastrar Produtos</Text>
+            </TouchableOpacity>
 
-           <TouchableOpacity style={styles.viewBox} activeOpacity={0.7}>
-           <AntDesign name="exception1" size={64} color="black" />
-           <Text>Status Cotação</Text>
-           </TouchableOpacity>
+            <TouchableOpacity style={styles.viewBox} activeOpacity={0.7}>
+                <AntDesign name="exception1" size={64} color="black" />
+                <Text>Status Cotação</Text>
+            </TouchableOpacity>
 
         </View>
     )
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         elevation: 5,
     },
-    textBox:{
+    textBox: {
 
     }
 }
