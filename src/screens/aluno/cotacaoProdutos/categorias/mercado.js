@@ -1,12 +1,12 @@
-import { StyleSheet, Text, View, TouchableOpacity  } from 'react-native';
+import { View } from 'react-native';
+import Select from '../../../../components/select'
+
 
 
 export default function CategoriaMercado(){
     return(
         <View>
-            <Text>
-                CategoriaMercado
-            </Text>
+            <Select/>
         </View>
     )
 }
