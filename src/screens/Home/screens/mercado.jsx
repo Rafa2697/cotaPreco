@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, FlatList, SectionList } from 'react-native'
 import React, { useState,useRef } from 'react';
-import api from "../../../services/api"
+
 
 import {CATEGORIES, PRODUCTS} from "../../../services/utils/mercado/products"
 import {Product} from '../../../components/product'
