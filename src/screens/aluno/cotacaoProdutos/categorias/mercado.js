@@ -6,29 +6,103 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 
 
 export default function CategoriaMercado() {
-    const [value, setValue] = useState(null);
-    const [isFocus, setIsFocus] = useState(false);
-    const [dados, setDados] = useState([]);
+    const [valueCidade, setValueCidade] = useState(null);
+    const [valueProduto, setValueProduto] = useState(null);
+    const [valueEstab, setValueEstab] = useState(null);
+    
+    const [isFocusProduto, setIsFocusProduto] = useState(false);
+    const [isFocusCidade, setIsFocusCidade] = useState(false);
+    const [isFocusEstab, setIsFocusEstab] = useState(false);
+    const [dadosProdutos, setDadosProdutos] = useState([]);
+    const [dadosCidades, setDadosCidades] = useState([]);
+    const [dadosEstab, setDadosEstab] = useState([]);
+
+
+    if(valueEstab && valueCidade){
+            console.log("true")
+        const cityprimaryKey = valueCidade.valueIdCidade
+        const foreignCityKey = valueEstab.ValueId2Cidade
+        console.log("chave primaria cidade: " + cityprimaryKey)
+        console.log("chave segundaria cidade: " + foreignCityKey)
+
+        const condicao = cityprimaryKey === foreignCityKey
+
+        console.log(condicao)
+    }
+        
+
 
     useEffect(() => {
+        //busca de produtos
         fetch('http://10.0.8.67:3000/product')
             .then(response => response.json())
             .then(data => {
                 // Mapeia os dados para o formato esperado pelo Dropdown
                 const formattedData = data.map(item => ({
                     label: `${item.nome} - R$${item.preco.toFixed(2)}`, // Formata o nome e preço como label
-                    value: item._id // Usa o _id como value
+                    valueIdProduto: item._id // Usa o _id como valueCidade
                 }));
-                setDados(formattedData);
+                setDadosProdutos(formattedData);
+            })
+            .catch(error => console.error(error));
+
+        fetch('http://10.0.8.67:3000/establishments')
+            .then(response => response.json())
+            .then(data => {
+                // Mapeia os dados para o formato esperado pelo Dropdown
+                const formattedData = data.map(item => ({
+                    label: item.nome,
+                    ValueId2Cidade: item.cidade
+                }));
+                setDadosEstab(formattedData)
+                
+            })
+            .catch(error => console.error(error));
+
+        // Busca as cidades
+        fetch('http://10.0.8.67:3000/cities')
+            .then(response => response.json())
+            .then(data => {
+                const formattedData = data.map(item => ({
+                    label: item.nome, // campo 'nome' de cada cidade
+                    valueIdCidade: item._id // '_id' de cada cidade
+                }));
+                setDadosCidades(formattedData);
             })
             .catch(error => console.error(error));
     }, []);
 
+    
+        
+        
+
     const renderLabelProduto = () => {
-        if (value || isFocus) {
+        if (valueProduto || isFocusProduto) {
             return (
-                <Text style={[styles.label, isFocus && { color: 'blue' }]}>
+                <Text style={[styles.label, isFocusProduto && { color: 'blue' }]}>
                     Selecione o Produto
+                </Text>
+
+            );
+        }
+        return null;
+    };
+    const renderLabelCidade = () => {
+        if (valueCidade || isFocusCidade) {
+            return (
+                <Text style={[styles.label, isFocusCidade && { color: 'blue' }]}>
+                    Selecione a Cidade
+                </Text>
+
+            );
+        }
+        return null;
+    };
+    const renderLabelestabelecimento = () => {
+        if (valueEstab || isFocusEstab) {
+            return (
+                <Text style={[styles.label, isFocusEstab && { color: 'blue' }]}>
+                    Selecione o estabelecimento
                 </Text>
 
             );
@@ -39,32 +113,68 @@ export default function CategoriaMercado() {
     return (
 
         <View>
+            <Text style={styles.title}>Selecione as opções abaixo</Text>
             <View style={styles.container}>
+            {renderLabelCidade()}
                 <Dropdown
-                    style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+                    style={[styles.dropdown, isFocusCidade && { borderColor: 'blue' }]}
                     placeholderStyle={styles.placeholderStyle}
                     selectedTextStyle={styles.selectedTextStyle}
                     inputSearchStyle={styles.inputSearchStyle}
                     iconStyle={styles.iconStyle}
-                    data={dados}
+                    data={dadosCidades}
                     search
                     maxHeight={300}
                     labelField="label"
                     valueField="value"
-                    placeholder={!isFocus ? 'Precione para selecionar' : '...'}
+                    placeholder={!isFocusCidade ? 'Selecionar Cidade' : '...'}
                     searchPlaceholder="Search..."
-                    value={dados}
-                    onFocus={() => setIsFocus(true)}
-                    onBlur={() => setIsFocus(false)}
+                    valueIdCidade={setValueCidade}
+                    onFocus={() => setIsFocusCidade(true)}
+                    onBlur={() => setIsFocusCidade(false)}
                     onChange={item => {
-                        setValue(item);
-                        setIsFocus(false);
+                        setValueCidade(item);
+                        setIsFocusCidade(false);
                     }}
 
                     renderLeftIcon={() => (
                         <AntDesign
                             style={styles.icon}
-                            color={isFocus ? 'blue' : 'black'}
+                            color={isFocusCidade ? 'blue' : 'black'}
+                            name="Safety"
+                            size={20}
+                        />
+                    )}
+                />
+            </View>
+
+            <View style={styles.container}>
+            {renderLabelestabelecimento()}
+                <Dropdown
+                    style={[styles.dropdown, isFocusEstab && { borderColor: 'blue' }]}
+                    placeholderStyle={styles.placeholderStyle}
+                    selectedTextStyle={styles.selectedTextStyle}
+                    inputSearchStyle={styles.inputSearchStyle}
+                    iconStyle={styles.iconStyle}
+                    data={dadosEstab}
+                    search
+                    maxHeight={300}
+                    labelField="label"
+                    valueField="value"
+                    placeholder={!isFocusCidade ? 'Selecionar Cidade' : '...'}
+                    searchPlaceholder="Search..."
+                    ValueId2Cidade={setValueEstab}
+                    onFocus={() => setIsFocusEstab(true)}
+                    onBlur={() => setIsFocusEstab(false)}
+                    onChange={item => {
+                        setValueEstab(item);
+                        setIsFocusEstab(false);
+                    }}
+
+                    renderLeftIcon={() => (
+                        <AntDesign
+                            style={styles.icon}
+                            color={isFocusEstab ? 'blue' : 'black'}
                             name="Safety"
                             size={20}
                         />
@@ -75,30 +185,30 @@ export default function CategoriaMercado() {
             <View style={styles.container}>
                 {renderLabelProduto()}
                 <Dropdown
-                    style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+                    style={[styles.dropdown, isFocusProduto && { borderColor: 'blue' }]}
                     placeholderStyle={styles.placeholderStyle}
                     selectedTextStyle={styles.selectedTextStyle}
                     inputSearchStyle={styles.inputSearchStyle}
                     iconStyle={styles.iconStyle}
-                    data={dados}
+                    data={dadosProdutos}
                     search
                     maxHeight={300}
                     labelField="label"
                     valueField="value"
-                    placeholder={!isFocus ? 'Precione para selecionar' : '...'}
+                    placeholder={!isFocusProduto ? 'Selecionar Produto' : '...'}
                     searchPlaceholder="Search..."
-                    value={dados}
-                    onFocus={() => setIsFocus(true)}
-                    onBlur={() => setIsFocus(false)}
+                    valueIdProduto={setValueProduto}
+                    onFocus={() => setIsFocusProduto(true)}
+                    onBlur={() => setIsFocusProduto(false)}
                     onChange={item => {
-                        setValue(item);
-                        setIsFocus(false);
+                        setValueProduto(item);
+                        setIsFocusProduto(false);
                     }}
 
                     renderLeftIcon={() => (
                         <AntDesign
                             style={styles.icon}
-                            color={isFocus ? 'blue' : 'black'}
+                            color={isFocusProduto ? 'blue' : 'black'}
                             name="Safety"
                             size={20}
                         />
@@ -116,6 +226,13 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
         padding: 16,
+    },
+    title:{
+        color:'blue',
+        padding:24,
+        textAlign:'center',
+        backgroundColor:'white',
+        fontSize: 18
     },
     dropdown: {
         height: 50,
