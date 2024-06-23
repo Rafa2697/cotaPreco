@@ -16,25 +16,12 @@ export default function CategoriaMercado() {
     const [dadosProdutos, setDadosProdutos] = useState([]);
     const [dadosCidades, setDadosCidades] = useState([]);
     const [dadosEstab, setDadosEstab] = useState([]);
-
-
-    if(valueEstab && valueCidade){
-            console.log("true")
-        const cityprimaryKey = valueCidade.valueIdCidade
-        const foreignCityKey = valueEstab.ValueId2Cidade
-        console.log("chave primaria cidade: " + cityprimaryKey)
-        console.log("chave segundaria cidade: " + foreignCityKey)
-
-        const condicao = cityprimaryKey === foreignCityKey
-
-        console.log(condicao)
-    }
-        
+    const [estabFiltrados, setEstabFiltrados] = useState([]);
 
 
     useEffect(() => {
         //busca de produtos
-        fetch('http://10.0.8.67:3000/product')
+        fetch('http://192.168.0.103:3000/product')
             .then(response => response.json())
             .then(data => {
                 // Mapeia os dados para o formato esperado pelo Dropdown
@@ -46,7 +33,7 @@ export default function CategoriaMercado() {
             })
             .catch(error => console.error(error));
 
-        fetch('http://10.0.8.67:3000/establishments')
+        fetch('http://192.168.0.103:3000/establishments')
             .then(response => response.json())
             .then(data => {
                 // Mapeia os dados para o formato esperado pelo Dropdown
@@ -60,7 +47,7 @@ export default function CategoriaMercado() {
             .catch(error => console.error(error));
 
         // Busca as cidades
-        fetch('http://10.0.8.67:3000/cities')
+        fetch('http://192.168.0.103:3000/cities')
             .then(response => response.json())
             .then(data => {
                 const formattedData = data.map(item => ({
@@ -227,11 +214,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         padding: 16,
     },
-    title:{
-        color:'blue',
-        padding:24,
-        textAlign:'center',
-        backgroundColor:'white',
+    title: {
+        color: 'blue',
+        padding: 24,
+        textAlign: 'center',
+        backgroundColor: 'white',
         fontSize: 18
     },
     dropdown: {
