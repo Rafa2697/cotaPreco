@@ -12,7 +12,7 @@ export default function Login({ navigation }) {
     }
 
     const handleLogin = async () => {
-        const apiUrl = 'http://10.0.8.67:3000/login'; //colocar o ip da maquina para usar o emulador ou aplicação no expo. 
+        const apiUrl = 'http://192.168.0.103:3000/login'; //colocar o ip da maquina para usar o emulador ou aplicação no expo. 
 
         const loginData = {
           ra: ra,

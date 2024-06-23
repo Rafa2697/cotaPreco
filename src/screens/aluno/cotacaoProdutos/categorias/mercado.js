@@ -9,7 +9,7 @@ export default function CategoriaMercado() {
     const [valueCidade, setValueCidade] = useState(null);
     const [valueProduto, setValueProduto] = useState(null);
     const [valueEstab, setValueEstab] = useState(null);
-    
+
     const [isFocusProduto, setIsFocusProduto] = useState(false);
     const [isFocusCidade, setIsFocusCidade] = useState(false);
     const [isFocusEstab, setIsFocusEstab] = useState(false);
@@ -20,6 +20,35 @@ export default function CategoriaMercado() {
 
 
     useEffect(() => {
+
+        // Busca as cidades
+        fetch('http://192.168.0.103:3000/cities')
+            .then(response => response.json())
+            .then(data => {
+                const formattedData = data.map(item => ({
+                    label: item.nome, // campo 'nome' de cada cidade
+                    valueIdCidade: item._id // '_id' de cada cidade
+                }));
+                setDadosCidades(formattedData);
+                console.log(dadosCidades)
+                console.log(valueCidade)
+            })
+            .catch(error => console.error(error));
+
+        fetch('http://192.168.0.103:3000/establishments')
+            .then(response => response.json())
+            .then(data => {
+                // Mapeia os dados para o formato esperado pelo Dropdown
+                const formattedData = data.map(item => ({
+                    label: item.nome,
+                    ValueId2Cidade: item.cidade
+                }));
+
+                setDadosEstab(formattedData)
+
+            })
+            .catch(error => console.error(error));
+
         //busca de produtos
         fetch('http://192.168.0.103:3000/product')
             .then(response => response.json())
@@ -33,35 +62,17 @@ export default function CategoriaMercado() {
             })
             .catch(error => console.error(error));
 
-        fetch('http://192.168.0.103:3000/establishments')
-            .then(response => response.json())
-            .then(data => {
-                // Mapeia os dados para o formato esperado pelo Dropdown
-                const formattedData = data.map(item => ({
-                    label: item.nome,
-                    ValueId2Cidade: item.cidade
-                }));
-                setDadosEstab(formattedData)
-                
-            })
-            .catch(error => console.error(error));
 
-        // Busca as cidades
-        fetch('http://192.168.0.103:3000/cities')
-            .then(response => response.json())
-            .then(data => {
-                const formattedData = data.map(item => ({
-                    label: item.nome, // campo 'nome' de cada cidade
-                    valueIdCidade: item._id // '_id' de cada cidade
-                }));
-                setDadosCidades(formattedData);
-            })
-            .catch(error => console.error(error));
+
+            console.log(dadosCidades)
+            console.log(valueCidade)
     }, []);
 
-    
-        
-        
+
+
+
+
+
 
     const renderLabelProduto = () => {
         if (valueProduto || isFocusProduto) {
@@ -102,7 +113,7 @@ export default function CategoriaMercado() {
         <View>
             <Text style={styles.title}>Selecione as opções abaixo</Text>
             <View style={styles.container}>
-            {renderLabelCidade()}
+                {renderLabelCidade()}
                 <Dropdown
                     style={[styles.dropdown, isFocusCidade && { borderColor: 'blue' }]}
                     placeholderStyle={styles.placeholderStyle}
@@ -136,7 +147,7 @@ export default function CategoriaMercado() {
             </View>
 
             <View style={styles.container}>
-            {renderLabelestabelecimento()}
+                {renderLabelestabelecimento()}
                 <Dropdown
                     style={[styles.dropdown, isFocusEstab && { borderColor: 'blue' }]}
                     placeholderStyle={styles.placeholderStyle}
