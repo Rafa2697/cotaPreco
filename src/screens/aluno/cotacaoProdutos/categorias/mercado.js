@@ -16,7 +16,7 @@ export default function CategoriaMercado() {
     const [dadosProdutos, setDadosProdutos] = useState([]);
     const [dadosCidades, setDadosCidades] = useState([]);
     const [dadosEstab, setDadosEstab] = useState([]);
-    const [estabFiltrados, setEstabFiltrados] = useState([]);
+    // const [estabFiltrados, setEstabFiltrados] = useState([]);
 
 
     useEffect(() => {
@@ -30,8 +30,7 @@ export default function CategoriaMercado() {
                     valueIdCidade: item._id // '_id' de cada cidade
                 }));
                 setDadosCidades(formattedData);
-                console.log(dadosCidades)
-                console.log(valueCidade)
+                
             })
             .catch(error => console.error(error));
 
@@ -62,11 +61,17 @@ export default function CategoriaMercado() {
             })
             .catch(error => console.error(error));
 
-
-
-            console.log(dadosCidades)
-            console.log(valueCidade)
     }, []);
+
+    useEffect(() => {
+
+       if(valueCidade === valueEstab){
+        console.log("ola")
+       }
+       
+        console.log(valueCidade)
+        console.log(valueEstab)
+    }, [dadosCidades, valueCidade, valueEstab])
 
 
 
@@ -131,8 +136,8 @@ export default function CategoriaMercado() {
                     onFocus={() => setIsFocusCidade(true)}
                     onBlur={() => setIsFocusCidade(false)}
                     onChange={item => {
-                        setValueCidade(item);
-                        setIsFocusCidade(false);
+                        setValueCidade(item.valueIdCidade);
+                        setIsFocusCidade(true);
                     }}
 
                     renderLeftIcon={() => (
