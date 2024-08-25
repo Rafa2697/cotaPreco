@@ -10,7 +10,7 @@ export default function Cadastro() {
     const [senha, setSenha] = React.useState(null);
 
     const handleOnSubmit = async () => {
-        const apiUrl = 'http://192.168.0.103/:3000/users'; // Substitua com o seu endpoint da API, não use localhost, coloque o ip da sua maquina para funcionar em emuladores e devices.
+        const apiUrl = 'http://192.168.1.5/:3000/users'; // Substitua com o seu endpoint da API, não use localhost, coloque o ip da sua maquina para funcionar em emuladores e devices.
         const userData = {
             ra: ra,
             nome: nome,
