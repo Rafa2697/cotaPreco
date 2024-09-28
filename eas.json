@@ -21,23 +21,48 @@
 //   }
 
 
+// {
+//   "cli": {
+//     "version": ">= 0.34.0"
+//   },
+//   "submit": {
+//     "production": {
+//       "android": {
+//         "serviceAccountKeyPath": "../path/to/api-xxx-yyy-zzz.json",
+//         "track": "internal"
+//       },
+//       "ios": {
+//         "appleId": "john@turtle.com",
+//         "ascAppId": "1234567890",
+//         "appleTeamId": "AB12XYZ34S"
+//       }
+//     }
+//   }
+// }
+
+
 {
   "cli": {
-    "version": ">= 0.34.0"
+    "version": ">= 8.0.0"
   },
+
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+
+    "preview": {
+      "distribution": "internal"
+    },
+
+    "production": {}
+  },
+
   "submit": {
-    "production": {
-      "android": {
-        "serviceAccountKeyPath": "../path/to/api-xxx-yyy-zzz.json",
-        "track": "internal"
-      },
-      "ios": {
-        "appleId": "john@turtle.com",
-        "ascAppId": "1234567890",
-        "appleTeamId": "AB12XYZ34S"
-      }
-    }
+    "production": {}
   }
 }
+
 
   
