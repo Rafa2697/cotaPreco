@@ -214,6 +214,6 @@ const PRODUCTS = [
 
 
 
-const CATEGORIES = PRODUCTS.map((item) => item.title)
+const CATEGORIES = PRODUCTS.map((item) => item.title) //pegando apenas os titulos das categorias
 
 export { PRODUCTS, CATEGORIES }

@@ -1,25 +1,27 @@
 import { StyleSheet, Text, View, FlatList, SectionList } from 'react-native'
-import React, { useState,useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
 
-import {CATEGORIES, PRODUCTS} from "../../../services/utils/mercado/products"
-import {Product} from '../../../components/product'
-import {Category} from '../../../components/category'
+import { CATEGORIES, PRODUCTS } from "../../../services/utils/mercado/products"
+import { Product } from '../../../components/product'
+import { Category } from '../../../components/category'
 
 
 export default function Mercado() {
-  const [category, setCategory] = useState(CATEGORIES[0])
+  const [category, setCategory] = useState(CATEGORIES[0]) 
   const sectionListRef = useRef(null)
 
-  function handleCategorySelect(selectedCategory) {
-    setCategory(selectedCategory)
+  //função para filtrar cada produto pela cidade selecionada
 
-    const sectionIndex = CATEGORIES.findIndex(
-      (category) => category === selectedCategory
+  function handleCategorySelect(selectedCategory) { //função para selecionar a categoria
+    setCategory(selectedCategory) //setando a categoria selecionada
+
+    const sectionIndex = CATEGORIES.findIndex( //pegando o index da categoria selecionada
+      (category) => category === selectedCategory //comparando se a categoria selecionada é igual a categoria que está sendo renderizada
     )
 
-    if (sectionListRef.current) {
-      sectionListRef.current.scrollToLocation({
+    if (sectionListRef.current) { //se a sectionListRef está definida
+      sectionListRef.current.scrollToLocation({ //scrollando para a categoria selecionada
         animated: true,
         sectionIndex,
         itemIndex: 0,
@@ -27,7 +29,7 @@ export default function Mercado() {
     }
   }
 
-  
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -49,7 +51,7 @@ export default function Mercado() {
         horizontal //renderizando na horizontal
       />
 
-        
+
       <SectionList
         ref={sectionListRef}
         sections={PRODUCTS} //recebendo os produtos do componente.
@@ -63,7 +65,7 @@ export default function Mercado() {
         )}
       />
     </View>
-    
+
   )
 }
 
