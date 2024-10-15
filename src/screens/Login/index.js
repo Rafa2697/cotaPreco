@@ -12,7 +12,7 @@ export default function Login({ navigation }) {
     }
 
     const handleLogin = async () => {
-        const apiUrl = 'https://api-cotapreco.onrender.com/users'; //colocar o ip da maquina para usar o emulador ou aplicação no expo. 
+        const apiUrl = 'https://api-cotapreco.onrender.com/login'; //colocar o ip da maquina para usar o emulador ou aplicação no expo. 
 
         const loginData = {
           ra: ra,
