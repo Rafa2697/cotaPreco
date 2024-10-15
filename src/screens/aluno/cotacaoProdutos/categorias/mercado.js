@@ -22,7 +22,7 @@ export default function CategoriaMercado() {
     useEffect(() => {
 
         // Busca as cidades
-        fetch('http://192.168.1.6:3000/cities')
+        fetch('https://api-cotapreco.onrender.com/cities')
             .then(response => response.json())
             .then(data => {
                 const formattedData = data.map(item => ({
@@ -34,7 +34,7 @@ export default function CategoriaMercado() {
             })
             .catch(error => console.error(error));
 
-        fetch('http://192.168.1.6:3000/establishments')
+        fetch('https://api-cotapreco.onrender.com/establishments')
             .then(response => response.json())
             .then(data => {
                 // Mapeia os dados para o formato esperado pelo Dropdown
@@ -49,7 +49,7 @@ export default function CategoriaMercado() {
             .catch(error => console.error(error));
 
         //busca de produtos
-        fetch('http://192.168.1.6:3000/product')
+        fetch('https://api-cotapreco.onrender.com/product')
             .then(response => response.json())
             .then(data => {
                 // Mapeia os dados para o formato esperado pelo Dropdown
