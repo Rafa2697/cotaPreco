@@ -1,47 +1,50 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, Pressable } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, Pressable,  ActivityIndicator } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 export default function Login({ navigation }) {
     const [ra, setRa] = React.useState(null)
     const [senha, setSenha] = React.useState(null)
     const [viewPass, setViewPass] = React.useState(true);
+    const [loading, setLoading] = React.useState(false);
     //escondendo input da senha
     function onViewPass() {
         setViewPass(!viewPass)
     }
 
     const handleLogin = async () => {
+        setLoading(true);
         const apiUrl = 'https://api-cotapreco.onrender.com/login'; //colocar o ip da maquina para usar o emulador ou aplicação no expo. 
 
         const loginData = {
-          ra: ra,
-          senha: senha
+            ra: ra,
+            senha: senha
         };
-      console.log(loginData)
         try {
-          const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(loginData)
-          });
-      
-          if (response.ok) {
-            const jsonResponse = await response.json();
-            // Aqui você pode salvar o token de autenticação, se necessário, e navegar para a tela do aluno
-            console.log('Login bem-sucedido:', jsonResponse);
-            navigation.navigate('menuAluno'); // Navega para a tela do aluno após o login bem-sucedido
-          } else {
-            throw new Error('Credenciais inválidas');
-          }
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData)
+            });
+
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                // Aqui você pode salvar o token de autenticação, se necessário, e navegar para a tela do aluno
+                console.log('Login bem-sucedido:', jsonResponse);
+                setLoading(false);
+                navigation.navigate('menuAluno'); // Navega para a tela do aluno após o login bem-sucedido
+            } else {
+                setLoading(false);
+                throw new Error('Credenciais inválidas');
+            }
         } catch (error) {
-            
-          Alert.alert('Erro de Login', 'Não foi possível realizar o login. Verifique suas credenciais e tente novamente.');
-        //   console.error('Erro ao tentar login:', error);
+
+            Alert.alert('Erro de Login', 'Não foi possível realizar o login. Verifique suas credenciais e tente novamente.');
+            //   console.error('Erro ao tentar login:', error);
         }
-      };
+    };
     return (
         <View style={styles.container}>
 
@@ -49,7 +52,7 @@ export default function Login({ navigation }) {
                 Bem vindo de volta
             </Text>
             <View style={styles.wraperInput}>
-                <TextInput style={styles.input} onChangeText={setRa} value={ra} keyboardType='numeric' placeholder='RA'/>
+                <TextInput style={styles.input} onChangeText={setRa} value={ra} keyboardType='numeric' placeholder='RA' />
 
                 <View style={styles.containerInPass}>
                     <View style={styles.input}>
@@ -67,10 +70,17 @@ export default function Login({ navigation }) {
 
                 <Text style={{ textAlign: 'right', color: 'blue' }} onPress={() => navigation.navigate('Cadastro')} >Primeiro acesso ?</Text>
             </View>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                {loading ? (
+                    <ActivityIndicator size="large" color="#0000ff" />
+                ) : (
+                    <TouchableOpacity style={styles.botaoLogin} onPress={handleLogin} activeOpacity={0.7}>
+                        <Text style={{ color: 'white', fontSize: 20, fontWeight: '700' }} >Login</Text>
+                    </TouchableOpacity>
+                )}
+            </View>
 
-            <TouchableOpacity style={styles.botaoLogin} onPress={handleLogin} activeOpacity={0.7}>
-                <Text style={{ color: 'white', fontSize: 20, fontWeight: '700' }} >Login</Text>
-            </TouchableOpacity>
+
             <Text style={{ textAlign: 'right', color: 'blue' }} onPress={() => Alert.alert('ir para tela de recuperar senha')} >Esqueci a senha</Text>
         </View>
     )
