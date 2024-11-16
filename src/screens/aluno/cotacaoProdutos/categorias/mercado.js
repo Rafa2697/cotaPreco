@@ -30,21 +30,19 @@ export default function CategoriaMercado() {
                     valueIdCidade: item._id // '_id' de cada cidade
                 }));
                 setDadosCidades(formattedData);
-                
+
             })
             .catch(error => console.error(error));
 
         fetch('https://api-cotapreco.onrender.com/establishments')
             .then(response => response.json())
             .then(data => {
-                // Mapeia os dados para o formato esperado pelo Dropdown
                 const formattedData = data.map(item => ({
                     label: item.nome,
+                    value: item._id,
                     ValueId2Cidade: item.cidade
                 }));
-
                 setDadosEstab(formattedData)
-
             })
             .catch(error => console.error(error));
 
@@ -55,28 +53,14 @@ export default function CategoriaMercado() {
                 // Mapeia os dados para o formato esperado pelo Dropdown
                 const formattedData = data.map(item => ({
                     label: `${item.nome} - R$${item.preco.toFixed(2)}`, // Formata o nome e preço como label
-                    valueIdProduto: item._id // Usa o _id como valueCidade
+                    value: item._id,
+                    ValueId2Estab: item.estabelecimento
                 }));
                 setDadosProdutos(formattedData);
             })
             .catch(error => console.error(error));
 
     }, []);
-
-    useEffect(() => {
-
-       if(valueCidade === valueEstab){
-        console.log("ola")
-       }
-       
-        console.log(valueCidade)
-        console.log(valueEstab)
-    }, [dadosCidades, valueCidade, valueEstab])
-
-
-
-
-
 
 
     const renderLabelProduto = () => {
@@ -111,6 +95,23 @@ export default function CategoriaMercado() {
             );
         }
         return null;
+    };
+
+
+
+    const getFilteredEstablishments = () => {
+        if (!valueCidade) return [];
+
+        return dadosEstab.filter(estab =>
+            estab.ValueId2Cidade === valueCidade
+        );
+    };
+    const getFilteredProducts = () => {
+        if (!valueEstab) return [];
+
+        return dadosProdutos.filter(produto =>
+            produto.ValueId2Estab === valueEstab
+        );
     };
 
     return (
@@ -159,21 +160,24 @@ export default function CategoriaMercado() {
                     selectedTextStyle={styles.selectedTextStyle}
                     inputSearchStyle={styles.inputSearchStyle}
                     iconStyle={styles.iconStyle}
-                    data={dadosEstab}
+
+                    data={getFilteredEstablishments()}
                     search
                     maxHeight={300}
                     labelField="label"
                     valueField="value"
-                    placeholder={!isFocusCidade ? 'Selecionar Cidade' : '...'}
+                    value={valueEstab}
+                    disabled={!valueCidade}
+                    placeholder={!valueCidade ? 'Selecione uma cidade primeiro' : 'Selecionar Estabelecimento'}
                     searchPlaceholder="Search..."
-                    ValueId2Cidade={setValueEstab}
+
                     onFocus={() => setIsFocusEstab(true)}
                     onBlur={() => setIsFocusEstab(false)}
                     onChange={item => {
-                        setValueEstab(item);
+                        console.log('Selected establishment:', item);
+                        setValueEstab(item.value);
                         setIsFocusEstab(false);
                     }}
-
                     renderLeftIcon={() => (
                         <AntDesign
                             style={styles.icon}
@@ -184,7 +188,6 @@ export default function CategoriaMercado() {
                     )}
                 />
             </View>
-
             <View style={styles.container}>
                 {renderLabelProduto()}
                 <Dropdown
@@ -193,21 +196,22 @@ export default function CategoriaMercado() {
                     selectedTextStyle={styles.selectedTextStyle}
                     inputSearchStyle={styles.inputSearchStyle}
                     iconStyle={styles.iconStyle}
-                    data={dadosProdutos}
+                    data={getFilteredProducts()}
                     search
                     maxHeight={300}
                     labelField="label"
+                    value={valueProduto}
                     valueField="value"
-                    placeholder={!isFocusProduto ? 'Selecionar Produto' : '...'}
+                    disabled={!valueEstab}
+                    placeholder={!valueProduto ? 'Selecione um estabelecimento primeiro' : 'Selecionar Produto'}
                     searchPlaceholder="Search..."
-                    valueIdProduto={setValueProduto}
                     onFocus={() => setIsFocusProduto(true)}
                     onBlur={() => setIsFocusProduto(false)}
                     onChange={item => {
-                        setValueProduto(item);
+                        console.log('Selected product:', item);
+                        setValueProduto(item.value);
                         setIsFocusProduto(false);
                     }}
-
                     renderLeftIcon={() => (
                         <AntDesign
                             style={styles.icon}
@@ -224,7 +228,6 @@ export default function CategoriaMercado() {
 
     );
 }
-
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
