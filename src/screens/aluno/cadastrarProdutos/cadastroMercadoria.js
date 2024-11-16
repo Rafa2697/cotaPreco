@@ -1,26 +1,79 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
 
 export default function CadastroMercadoria({ navigation }) {
+    const [categoria, setCategoria] = useState('');
+    const [cidade, setCidade] = useState('');
+    const [mercado, setMercado] = useState('');
+    const [produto, setProduto] = useState('');
+    const [preco, setPreco] = useState('');
+
+    const handleSubmit = () => {
+        // Here you'll implement the API call to save the product
+        const data = {
+            categoria,
+            cidade,
+            estabelecimento: mercado,
+            nome: produto,
+            valor: Number(preco)
+        };
+        
+        console.log(data);
+        // Clear fields after submission
+        setCategoria('');
+        setCidade('');
+        setMercado('');
+        setProduto('');
+        setPreco('');
+    }
+
     return (
         <View style={styles.container}>
-
-            <Text style={styles.title}>
-                Cadastro de Mercadorias
-            </Text>
+            <Text style={styles.title}>Cadastro de Mercadorias</Text>
+            
             <View style={styles.wraperInput}>
-                <TextInput style={styles.input} placeholder='Categoria' />
-                <TextInput style={styles.input} placeholder='Cidade' />
-                <TextInput style={styles.input} placeholder='Mercado' />
-                <TextInput style={styles.input} placeholder='Nome do produto' />
-                <TextInput style={styles.input} placeholder='Preço' />
-                
+                <TextInput 
+                    style={styles.input} 
+                    placeholder='Categoria'
+                    value={categoria}
+                    onChangeText={setCategoria}
+                />
+                <TextInput 
+                    style={styles.input} 
+                    placeholder='Cidade'
+                    value={cidade}
+                    onChangeText={setCidade}
+                />
+                <TextInput 
+                    style={styles.input} 
+                    placeholder='Mercado'
+                    value={mercado}
+                    onChangeText={setMercado}
+                />
+                <TextInput 
+                    style={styles.input} 
+                    placeholder='Nome do produto'
+                    value={produto}
+                    onChangeText={setProduto}
+                />
+                <TextInput 
+                    style={styles.input} 
+                    placeholder='Preço'
+                    value={preco}
+                    onChangeText={setPreco}
+                    keyboardType="numeric"
+                />
             </View>
             
-            <TouchableOpacity style={styles.botaoLogin} onPress={() => Alert.alert('Cadastro solicitado, aguarde o email de confirmação com login e senha.')} activeOpacity={0.7}>
-                <Text style={{ color: 'white', fontSize: 20, fontWeight:'700' }} >Enviar</Text>
+            <TouchableOpacity 
+                style={styles.botaoLogin} 
+                onPress={handleSubmit}
+                activeOpacity={0.7}
+            >
+                <Text style={styles.buttonText}>Cadastrar Produto</Text>
             </TouchableOpacity>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -31,18 +84,15 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         alignItems: "center",
         backgroundColor: "#fff",
-
     },
     wraperInput: {
         gap: 24,
-        
     },
     title: {
-        fontSize: 18,
+        fontSize: 24,
         margin: 10,
-        color: "#ccc",
-        textAlign: 'justify',
-        
+        color: "#505059",
+        fontWeight: "bold"
     },
     input: {
         width: 357,
@@ -53,11 +103,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: "#f0f8ff"
     },
-    image: {
-        marginTop: 70,
-        width: 300,
-        height: 70,
-    },
     botaoLogin: {
         borderRadius: 5,
         width: 260,
@@ -66,9 +111,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         elevation: 5,
-        
-
     },
-}
-
-)
+    buttonText: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: '700'
+    }
+});
