@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -17,6 +17,12 @@ export default function CategoriaMercado() {
     const [dadosCidades, setDadosCidades] = useState([]);
     const [dadosEstab, setDadosEstab] = useState([]);
     // const [estabFiltrados, setEstabFiltrados] = useState([]);
+    const [showForm, setShowForm] = useState(false);
+    const [formData, setFormData] = useState({
+        nome: '',
+        preco: '',
+        descricao: ''
+    });
 
 
     useEffect(() => {
@@ -52,7 +58,7 @@ export default function CategoriaMercado() {
             .then(data => {
                 // Mapeia os dados para o formato esperado pelo Dropdown
                 const formattedData = data.map(item => ({
-                    label: `${item.nome} - R$${item.preco.toFixed(2)}`, // Formata o nome e preço como label
+                    label: `${item.nome} - R$${item.preco ? item.preco.toFixed(2) : '0.00'}`, // Formata o nome e preço como label
                     value: item._id,
                     ValueId2Estab: item.estabelecimento
                 }));
@@ -101,17 +107,38 @@ export default function CategoriaMercado() {
 
     const getFilteredEstablishments = () => {
         if (!valueCidade) return [];
-
-        return dadosEstab.filter(estab =>
-            estab.ValueId2Cidade === valueCidade
-        );
+        const filtered = dadosEstab.filter(estab => estab.ValueId2Cidade === valueCidade);
+        return filtered;
     };
     const getFilteredProducts = () => {
         if (!valueEstab) return [];
+        const filtered = dadosProdutos.filter(produto => {
+            return produto.ValueId2Estab === valueEstab;
+        });
+        return filtered;
+    };
 
-        return dadosProdutos.filter(produto =>
-            produto.ValueId2Estab === valueEstab
-        );
+    //função para abrir o formulário de atualização
+    const handleUpdateProduct = async () => {
+        try {
+            const response = await fetch(`https://api-cotapreco.onrender.com/product/${valueProduto}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                alert('Produto atualizado com sucesso!');
+                setShowForm(false);
+            } else {
+                alert('Erro ao atualizar produto');
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+            alert('Erro ao atualizar produto');
+        }
     };
 
     return (
@@ -222,6 +249,35 @@ export default function CategoriaMercado() {
                     )}
                 />
             </View>
+
+            {valueProduto && ( // Renderiza o formulário apenas se houver um produto selecionado
+                <View style={styles.formContainer}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Nome do produto"
+                        value={formData.nome}
+                        onChangeText={(text) => setFormData({ ...formData, nome: text })}
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Preço"
+                        value={formData.preco}
+                        keyboardType="numeric"
+                        onChangeText={(text) => setFormData({ ...formData, preco: text })}
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Descrição"
+                        value={formData.descricao}
+                        multiline
+                        onChangeText={(text) => setFormData({ ...formData, descricao: text })}
+                    />
+                    <Button
+                        title="Atualizar Produto"
+                        onPress={handleUpdateProduct}
+                    />
+                </View>
+            )}
         </View>
 
 
@@ -273,4 +329,17 @@ const styles = StyleSheet.create({
         height: 40,
         fontSize: 16,
     },
+    formContainer: {
+        backgroundColor: 'white',
+        padding: 16,
+        marginTop: 10,
+    },
+    input: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 8,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+    }
 });
