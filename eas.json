@@ -41,7 +41,9 @@
 // }
 
 
-{
+
+  {
+ 
   "build": {
     "preview": {
       "android": {
@@ -61,8 +63,8 @@
     },
     "production": {}
   }
-}
 
+}
 
 
   
