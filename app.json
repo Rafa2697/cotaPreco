@@ -26,15 +26,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png",
-      "output": "server"
+      "output": "static"
     },
     "extra": {
       "eas": {
         "projectId": "c256f6ab-6108-4a0c-a678-2539653dc318"
       }
-    },
-    "plugins": [
-      "expo-router"
-    ]
+    }
   }
 }
