@@ -103,8 +103,6 @@ export default function CategoriaMercado() {
         return null;
     };
 
-
-
     const getFilteredEstablishments = () => {
         if (!valueCidade) return [];
         const filtered = dadosEstab.filter(estab => estab.ValueId2Cidade === valueCidade);

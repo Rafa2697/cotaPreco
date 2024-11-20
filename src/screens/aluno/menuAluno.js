@@ -10,12 +10,12 @@ export default function MenuAluno({ navigation }) {
 
             <TouchableOpacity style={styles.viewBox} activeOpacity={0.7} onPress={() => navigation.navigate('Categorias')}>
                 <AntDesign name="solution1" size={62} color="black" />
-                <Text>Cotação de Produtos</Text>
+                <Text>Produtos cotados</Text>
             </TouchableOpacity >
 
             <TouchableOpacity style={styles.viewBox} activeOpacity={0.7} onPress={() => navigation.navigate('CadastroMercadoria')}>
                 <AntDesign name="pluscircle" size={62} color="black" />
-                <Text>Cadastrar Produtos</Text>
+                <Text>Cadastros</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.viewBox} activeOpacity={0.7}>
